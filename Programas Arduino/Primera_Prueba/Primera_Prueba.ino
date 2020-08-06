@@ -4,10 +4,18 @@ const float analogIpvPin = A1; // Analog output pin that the LED is attached to
 
 float Vpvin = 0;        // Lectura del voltaje del arrglo
 float Vpv= 0;
-float sensorValue=0;
-
-float Ipvin = 0;        //Lectura de la corriente del arreglo
+float Ipvin = 0;        //variables de lectura nueva
 float Ipv= 0;
+float Pv=0;
+float dv=0;
+float dp=0;
+float di=0;
+float D=0.71;
+
+float Ipva= 1;        // Variables anteriores
+float Vpva= 1;
+float Pva= Vpva*Ipva;
+
 
 float VCC= 5;// Voltaje de alimentacion del sensor de corriente
 float  sensitivity =0.100;// sensibilidad del ACS712ELCTR-20A-T
@@ -21,16 +29,41 @@ void setup() {
 }
 
 void loop() {
-  // Lectura de voltaje
-  sensorValue = analogRead(analogVpvIn);
-  Vpv=  (sensorValue*5.0*42.0)/1023.0;
-
-
+  // Lectura de voltaje y corriente
   
+  Vpv=  (analogRead(analogVpvIn)*5.0*42.0)/1023.0;
   float voltage_raw =   (5.0 / 1023.0)* analogRead(analogIpvPin);// Read the voltage from sensor
   voltage =  voltage_raw - QOV + 0.012 ;// 0.000 is a value to make voltage zero when there is no current
-  float current = voltage / sensitivity;
- 
+  float Ipv = voltage / sensitivity;
+  Pv= Ipv * Vpv;
+
+  dv=Vpv-Vpva;
+  di=Ipv-Ipva;
+  dp=Pv-Pva;
+
+  if (dp>0){
+    if (dv>0){
+      if(di>0){
+        D=D+0.01;
+      }
+      else{
+       D=D-0.01;
+      }
+    }
+    else{
+      D+0.01;
+    }
+  }
+
+  else if(dv>0){
+    D=D+0.01;
+    }
+    else{
+      D=D-0.01;
+    }
+  
+  
+  
 
   // change the analog out value:
   
@@ -41,10 +74,36 @@ void loop() {
 
    
   Serial.print("\t Ipv: ");
-  Serial.print(current,2); // print the current with 2 decimal places
+  Serial.print(Ipv,2); // print the current with 2 decimal places
   Serial.println("A");
+
+  Serial.print("\t Pvp: ");
+  Serial.print(Pv); // print the current with 2 decimal places
+  Serial.println("W");
+
+  Serial.print("Vpv anterior = ");
+  Serial.print(Vpva);
+  Serial.println("V");
+
+   
+  Serial.print("\t Ipv anterior: ");
+  Serial.print(Ipva,2); // print the current with 2 decimal places
+  Serial.println("A");
+
+  Serial.print("\t Pvp anterior: ");
+  Serial.print(Pva); // print the current with 2 decimal places
+  Serial.println("W");
+
+  Serial.print("\t D: ");
+  Serial.print(D); 
+  
+  Pva=Pv;
+  Vpva=Vpv;
+  Ipva=Ipv;
+
+
 
   // wait 2 milliseconds before the next loop for the analog-to-digital
   // converter to settle after the last reading:
-  delay(2000);
+  delay(10000);
 }
