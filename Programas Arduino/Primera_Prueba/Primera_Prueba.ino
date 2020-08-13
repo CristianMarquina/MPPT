@@ -10,7 +10,7 @@ float Pv=0;
 float dv=0;
 float dp=0;
 float di=0;
-float D=63.33;
+float D=0.6333;
 
 float Ipva= 1;        // Variables anteriores
 float Vpva= 1;

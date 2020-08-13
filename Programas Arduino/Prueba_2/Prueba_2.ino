@@ -1,7 +1,7 @@
 const float analogVpvIn = A0;  // Analog input pin that the potentiometer is attached to
 const float analogIpvPin = A1; // Analog output pin that the LED is attached to
-float D=0.1187;
-float d=0.17;
+float D=0.1188;
+
 float T=666.66;
 
 float Vpvin = 0;        // Lectura del voltaje del arrglo
