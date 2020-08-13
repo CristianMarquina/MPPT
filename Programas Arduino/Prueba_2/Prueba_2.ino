@@ -50,10 +50,15 @@ void loop()
  else{
   if(dp>0){
     if(dv>0){
-      D=D-0.000001;
+      if(di>0){
+        D=D+0.000001;
+        }else{
+          D=D-0.000001;
+          }
       }else{
         D=D+0.000001;
         }
+      
     }else if(dv>0){
       D=D+0.000001;
       }else {

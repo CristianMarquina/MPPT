@@ -45,9 +45,9 @@ void main()
    
        set_adc_channel(0);          //Selecciono el canal 0 (RA0)
        Vpvin=read_adc();             //Guarde el dato del LM en tempe
-           
+       BIT_CLEAR(lED);    
        Vpv=(Vpvin*5.0);              //Conversion de bits a temperatura
-       BIT_CLEAR(lED);
+       
       // lcd_gotoxy(1,1);             //Ubiquese en la posicion 1,1
       // lcd_putc("V=");
        //lcd_gotoxy(3,1);             //Ubiquese en la posicion 2,2

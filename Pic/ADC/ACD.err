@@ -1,0 +1,7 @@
+>>> Warning 203 "ACD.c" Line 44(1,1): Condition always TRUE
+>>> Warning 202 "ACD.c" Line 21(7,9): Variable never used:   Pv
+>>> Warning 202 "ACD.c" Line 22(7,9): Variable never used:   dv
+>>> Warning 202 "ACD.c" Line 23(7,9): Variable never used:   dp
+>>> Warning 202 "ACD.c" Line 24(7,9): Variable never used:   di
+      Memory usage:   ROM=11%      RAM=16% - 20%
+      0 Errors,  5 Warnings.
