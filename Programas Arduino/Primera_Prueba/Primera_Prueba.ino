@@ -11,7 +11,7 @@ float dv=0;
 float dp=0;
 float di=0;
 float D=0.6333;
-
+float deltaD=0.00005;
 float Ipva= 1;        // Variables anteriores
 float Vpva= 1;
 float Pva= Vpva*Ipva;
@@ -48,18 +48,18 @@ void loop() {
   if(dp>0){
     if(dv>0){
       if(di>0){
-        D=D+0.000001;
+        D=D+deltaD;
         }else{
-          D=D-0.000001;
+          D=D-deltaD;
           }
       }else{
-        D=D+0.000001;
+        D=D+deltaD;
         }
       
     }else if(dv>0){
-      D=D+0.000001;
+      D=D+deltaD;
       }else {
-        D=D-0.000001;
+        D=D-deltaD;
         } 
  }
   

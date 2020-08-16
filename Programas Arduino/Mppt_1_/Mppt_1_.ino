@@ -1,8 +1,8 @@
 const float analogVpvIn = A0;  // Analog input pin that the potentiometer is attached to
 const float analogIpvPin = A1; // Analog output pin that the LED is attached to
-float D=0.1188;
-float deltaD=0.00005;
-float T=666.66;
+float D=0.1053;
+float deltaD=0.0005;
+float T=833.33;
 
 float Vpvin = 0;        // Lectura del voltaje del arrglo
 float Vpv= 0;
@@ -44,39 +44,28 @@ void loop()
   dv=Vpv-Vpva;
   di=Ipv-Ipva;
   dp=Pv-Pva;
-  if(dp=0){
-  D=D;
- }
- else{
-  if(dp>0){
-    if(dv>0){
-      if(di>0){
+  if(dp!=0){
+    if(dp>0){
+      if(dv<0){
         D=D+deltaD;
         }else{
-          D=D-deltaD;
-          }
-      }else{
-        D=D+deltaD;
+         D=D-deltaD;
         }
-      
-    }else if(dv>0){
-      D=D+deltaD;
-      }else {
+    }else{
+      if(dv<0){
         D=D-deltaD;
-        } 
- }
-
+        }else{
+        D=D+deltaD;
+          }
+    }
+    }else {
+      D=D;
+      }
   Pva=Pv;
   Vpva=Vpv;
   Ipva=Ipv;
   
   delayMicroseconds((D)*T);
   digitalWrite(13, LOW);
-  delayMicroseconds((1-0.5145-D)*T);
-
-
-  //digitalWrite(13, HIGH);
-  //delayMicroseconds(D*T); // Approximately 10% duty cycle @ 1KHz
-  //digitalWrite(13, LOW);
-  //delayMicroseconds((1-D)*T);
-}
+  delayMicroseconds((1-0.528-D)*T);
+  }
