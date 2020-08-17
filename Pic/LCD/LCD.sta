@@ -12,11 +12,11 @@ Stack used: 5 worst case (out of 8 total available)
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   84    38  36  LCD.c
+   85    38  36  LCD.c
   425     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\16f887.h
   348    67  64  ..\..\..\..\..\..\..\Program Files (x86)\PICC\drivers\lcd.c
 ----- -----
-  857   105 Total
+  858   105 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------

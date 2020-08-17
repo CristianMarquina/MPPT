@@ -13,7 +13,7 @@ long Ipvin = 0;     //Lectura de la entrada para la corriente de salida del arre
 float Ipv= 0; //Almacena la corriente de salida del arreglo de paneles
 float Pvp= 0; //Almacena La potencia de salida del arreglo de paneles
 
-const float VCC=5;// Voltaje de alimentacion del sensor de corriente
+const float VCC=5.0;// Voltaje de alimentacion del sensor de corriente
 float  sensitivity =0.100;// sensibilidad del ACS712ELCTR-20A-T
 const float QOV =   0.5 * VCC;
 float voltage;//Voltaje que da la lectura de corriente
@@ -40,16 +40,18 @@ void main()
    
    while(1)
    {
-       set_adc_channel(0);          //Selecciono el canal 0 (RA0)
+       set_adc_channel(0);
+       delay_ms(1);  //Selecciono el canal 0 (RA0)
        Vpvin=read_adc();             //Guarde el dato de el voltaje de salida de los paneles
        Vpv=  (Vpvin*5.0*42.0)/1023.0;
        
        lcd_gotoxy(1,1);             //Ubiquese en la posicion 2,2
        printf(lcd_putc,"Vpv=%f",Vpv);  //Muestra el valor del voltaje de salida de arreglo de los paneles
        
-       set_adc_channel(1);          //Selecciono el canal 1 (RA1)
-       Ipvin=read_adc(); 
-       voltage_raw =   (5.0 / 1023.0)* Ipvin;// Lee voltaje del sensor de corriente
+       set_adc_channel(1); 
+       delay_ms(1);  //Selecciono el canal 1 (RA1)
+       Ipvin=read_adc();
+       voltage_raw =   (5.0 / 1023.0)* Ipvin;
        voltage =  voltage_raw - QOV + 0.012 ;
        Ipv = voltage / sensitivity;
        lcd_gotoxy(12,1);             //Ubiquese en la posicion 13,1
@@ -71,7 +73,7 @@ void main()
        Ilin=read_adc(); 
        voltage_rawl =   (5.0 / 1023.0)* Ilin;// Lee voltaje del sensor de corriente para la carga
        voltagel =  voltage_rawl - QOV + 0.012 ;
-       Il = voltage / sensitivity;
+       Il = voltagel / sensitivity;
        lcd_gotoxy(32,1);             //Ubiquese en la posicion 12,3
        printf(lcd_putc,"Il=%f",Il);  //Muestra el valor de La corriente de la carga
        

@@ -1,4 +1,4 @@
-CCS PCM C Compiler, Version 4.104, 5967               15-Aug-20 22:49
+CCS PCM C Compiler, Version 4.104, 5967               17-Aug-20 19:07
 
                Filename: C:\Users\cmarq\Documents\Entrega\MPPT\Pic\LCD\LCD.lst
 
@@ -13,6 +13,7 @@ CCS PCM C Compiler, Version 4.104, 5967               15-Aug-20 22:49
 0001:  MOVWF  0A
 0002:  GOTO   000
 0003:  NOP
+....................    
 .................... #INCLUDE <16f887.h> 
 .................... //////// Standard Header file for the PIC16F887 device //////////////// 
 .................... #device PIC16F887 
